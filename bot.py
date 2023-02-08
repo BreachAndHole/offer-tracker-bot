@@ -3,6 +3,8 @@ from aiogram.types import Message
 
 import config
 import database
+import keyboards
+import messages
 from database import BotUser
 
 
@@ -25,7 +27,10 @@ async def start_command(message: Message):
         )
 
     await message.delete()
-    await message.answer('/start, /help - Вызвать меню и справку')
+    await message.answer(
+        text=messages.START_MESSAGE,
+        reply_markup=keyboards.main_keyboard
+    )
 
 
 @dp.message_handler()

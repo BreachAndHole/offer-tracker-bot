@@ -13,7 +13,7 @@ class BotUser:
 
 @dataclass
 class DailyResult:
-    # Meetings
+    # Meeting results
     user_id: int
     success: int
     postponed: int
