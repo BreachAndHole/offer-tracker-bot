@@ -33,6 +33,32 @@ async def start_command(message: Message):
     )
 
 
+@dp.message_handler(commands=['stat', 'result'])
+async def stat_command(message: Message):
+    user = BotUser(
+        telegram_id=message.from_user.id,
+        first_name=message.from_user.first_name,
+        last_name=message.from_user.last_name
+    )
+    daily_result = database.get_user_daily_result(user)
+    reply_text = f'''
+Успешно: {daily_result.success}
+Перенос: {daily_result.postponed}
+Отмена: {daily_result.canceled}
+    
+{daily_result.invite_friend} пд
+{daily_result.transfer_abroad} переводы за рубеж
+{daily_result.mobile_bank} мб
+{daily_result.debit_card} дк
+{daily_result.credit_card} кк
+{daily_result.sim_card} сим
+{daily_result.investments} ти
+{daily_result.junior} джуниор
+{daily_result.subscription} подписка
+'''
+    await message.answer(reply_text)
+
+
 @dp.message_handler()
 async def echo(message: Message):
     await message.delete()
