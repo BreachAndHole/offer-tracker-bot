@@ -3,9 +3,9 @@ from aiogram.types import Message
 
 import config
 import database
-import keyboards
 import messages
 from database import BotUser
+from keyboards import replyKeyboards
 
 
 bot = Bot(token=config.API_TOKEN, parse_mode='HTML')
@@ -29,7 +29,7 @@ async def start_command(message: Message):
     await message.delete()
     await message.answer(
         text=messages.START_MESSAGE,
-        reply_markup=keyboards.main_keyboard
+        reply_markup=replyKeyboards.main_keyboard
     )
 
 

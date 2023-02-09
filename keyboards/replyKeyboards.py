@@ -1,7 +1,4 @@
-from aiogram.types import (
-    KeyboardButton, ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
-)
+from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 
 
 # Main keyboard buttons
@@ -21,7 +18,6 @@ junior = KeyboardButton(text='Джуниор')
 subscription = KeyboardButton(text='Подписка PRO')
 
 main_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-
 main_keyboard.row(success_btn, postponed_btn, canceled_btn)
 main_keyboard.row(invite_friends_btn, transfer_abroad, mobile_bank)
 main_keyboard.row(debit_card, credit_card, sim_card)
