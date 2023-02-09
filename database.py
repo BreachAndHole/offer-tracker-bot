@@ -48,7 +48,6 @@ def execute_read_query(query: str, file_name=DB_FILE_NAME) -> list[tuple]:
 def create_database(file_name=DB_FILE_NAME) -> None:
     execute_query(queries.CREATE_USER_TABLE)
     execute_query(queries.CREATE_RESULT_TABLE)
-    execute_query('INSERT INTO result (user_id) VALUES (252907912);')
 
 
 def get_all_user_ids(file_name=DB_FILE_NAME) -> list[int]:
@@ -76,7 +75,16 @@ def add_user_to_database(bot_user: BotUser, file_name=DB_FILE_NAME) -> bool:
         );
     '''
     execute_query(query)
+    create_empty_result(bot_user)
     return True
+
+
+def create_empty_result(bot_user: BotUser, file_name=DB_FILE_NAME):
+    query = f'''
+        INSERT INTO result (user_id)
+        VALUES ({bot_user.telegram_id});
+    '''
+    execute_query(query)
 
 
 def get_user_daily_result(
