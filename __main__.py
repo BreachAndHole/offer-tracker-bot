@@ -1,7 +1,6 @@
-from aiogram import Bot, Dispatcher, executor
-import config
+from aiogram import Dispatcher, executor
 import database
-from handlers import message_handlers, callback_handlers
+from handlers import callback_handlers, message_handlers
 from bot import bot
 
 

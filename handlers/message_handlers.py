@@ -52,9 +52,108 @@ async def success_menu(message: Message):
     )
 
 
+async def postponed_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.postponed_kb
+    )
+
+
+async def canceled_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.canceled_kb
+    )
+
+
+async def invite_friend_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.invite_kb
+    )
+
+
+async def transfer_abroad_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.transfer_kb
+    )
+
+
+async def mobile_bank_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.mobile_kb
+    )
+
+
+async def debit_card_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.debit_kb
+    )
+
+
+async def credit_card_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.credit_kb
+    )
+
+
+async def sim_card_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.sim_kb
+    )
+
+
+async def investments_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.investments_kb
+    )
+
+
+async def junior_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.junior_kb
+    )
+
+
+async def subscription_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.subscription_kb
+    )
+
+
 def setup(dp: Dispatcher):
     dp.register_message_handler(start_command, commands=['start', 'help'])
     dp.register_message_handler(stat_command, commands=['stat'])
 
     # Inline handlers
     dp.register_message_handler(success_menu, Text(equals=main_kb_buttons.success))
+    dp.register_message_handler(postponed_menu, Text(equals=main_kb_buttons.postponed))
+    dp.register_message_handler(canceled_menu, Text(equals=main_kb_buttons.canceled))
+    dp.register_message_handler(invite_friend_menu, Text(equals=main_kb_buttons.invite_friend))
+    dp.register_message_handler(transfer_abroad_menu, Text(equals=main_kb_buttons.transfer_abroad))
+    dp.register_message_handler(mobile_bank_menu, Text(equals=main_kb_buttons.mobile_bank))
+    dp.register_message_handler(debit_card_menu, Text(equals=main_kb_buttons.debit_card))
+    dp.register_message_handler(credit_card_menu, Text(equals=main_kb_buttons.credit_card))
+    dp.register_message_handler(sim_card_menu, Text(equals=main_kb_buttons.sim_card))
+    dp.register_message_handler(investments_menu, Text(equals=main_kb_buttons.investments))
+    dp.register_message_handler(junior_menu, Text(equals=main_kb_buttons.junior))
+    dp.register_message_handler(subscription_menu, Text(equals=main_kb_buttons.subscription))
