@@ -1,6 +1,7 @@
 from aiogram import Dispatcher, Bot
 from aiogram.types import Message
 from bot import bot
+from keyboards.buttons_config import inline_buttons
 
 
 async def cancel_changes(message: Message):
@@ -129,28 +130,28 @@ async def subscription_remove(message: Message):
 
 
 def setup(dp: Dispatcher):
-    dp.register_callback_query_handler(cancel_changes, text='cancel_btn')
-    dp.register_callback_query_handler(success_remove, text='success_remove_btn')
-    dp.register_callback_query_handler(success_add, text='success_add_btn')
-    dp.register_callback_query_handler(postponed_add, text='postponed_add_btn')
-    dp.register_callback_query_handler(postponed_remove, text='postponed_remove_btn')
-    dp.register_callback_query_handler(canceled_add, text='canceled_add_btn')
-    dp.register_callback_query_handler(canceled_remove, text='canceled_remove_btn')
-    dp.register_callback_query_handler(invite_add, text='invite_add_btn')
-    dp.register_callback_query_handler(invite_remove, text='invite_remove_btn')
-    dp.register_callback_query_handler(transfer_add, text='transfer_add_btn')
-    dp.register_callback_query_handler(transfer_remove, text='transfer_remove_btn')
-    dp.register_callback_query_handler(mobile_bank_add, text='mobile_add_btn')
-    dp.register_callback_query_handler(mobile_bank_remove, text='mobile_remove_btn')
-    dp.register_callback_query_handler(debit_card_add, text='debit_add_btn')
-    dp.register_callback_query_handler(debit_card_remove, text='debit_remove_btn')
-    dp.register_callback_query_handler(credit_card_add, text='credit_add_btn')
-    dp.register_callback_query_handler(credit_card_remove, text='credit_remove_btn')
-    dp.register_callback_query_handler(sim_card_add, text='sim_add_btn')
-    dp.register_callback_query_handler(sim_card_remove, text='sim_remove_btn')
-    dp.register_callback_query_handler(investments_add, text='investments_add_btn')
-    dp.register_callback_query_handler(investments_remove, text='investments_remove_btn')
-    dp.register_callback_query_handler(junior_add, text='junior_add_btn')
-    dp.register_callback_query_handler(junior_remove, text='junior_remove_btn')
-    dp.register_callback_query_handler(subscription_add, text='subscription_add_btn')
-    dp.register_callback_query_handler(subscription_remove, text='subscription_remove_btn')
+    dp.register_callback_query_handler(cancel_changes, text=inline_buttons.cancel)
+    dp.register_callback_query_handler(success_add, text=inline_buttons.success.add)
+    dp.register_callback_query_handler(success_remove, text=inline_buttons.success.remove)
+    dp.register_callback_query_handler(postponed_add, text=inline_buttons.postponed.add)
+    dp.register_callback_query_handler(postponed_remove, text=inline_buttons.postponed.remove)
+    dp.register_callback_query_handler(canceled_add, text=inline_buttons.canceled.add)
+    dp.register_callback_query_handler(canceled_remove, text=inline_buttons.canceled.remove)
+    dp.register_callback_query_handler(invite_add, text=inline_buttons.invite_friend.add)
+    dp.register_callback_query_handler(invite_remove, text=inline_buttons.invite_friend.remove)
+    dp.register_callback_query_handler(transfer_add, text=inline_buttons.transfer_abroad.add)
+    dp.register_callback_query_handler(transfer_remove, text=inline_buttons.transfer_abroad.remove)
+    dp.register_callback_query_handler(mobile_bank_add, text=inline_buttons.mobile_bank.add)
+    dp.register_callback_query_handler(mobile_bank_remove, text=inline_buttons.mobile_bank.remove)
+    dp.register_callback_query_handler(debit_card_add, text=inline_buttons.debit_card.add)
+    dp.register_callback_query_handler(debit_card_remove, text=inline_buttons.debit_card.remove)
+    dp.register_callback_query_handler(credit_card_add, text=inline_buttons.credit_card.add)
+    dp.register_callback_query_handler(credit_card_remove, text=inline_buttons.credit_card.remove)
+    dp.register_callback_query_handler(sim_card_add, text=inline_buttons.sim_card.add)
+    dp.register_callback_query_handler(sim_card_remove, text=inline_buttons.sim_card.remove)
+    dp.register_callback_query_handler(investments_add, text=inline_buttons.investments.add)
+    dp.register_callback_query_handler(investments_remove, text=inline_buttons.investments.remove)
+    dp.register_callback_query_handler(junior_add, text=inline_buttons.junior.add)
+    dp.register_callback_query_handler(junior_remove, text=inline_buttons.junior.remove)
+    dp.register_callback_query_handler(subscription_add, text=inline_buttons.subscription.add)
+    dp.register_callback_query_handler(subscription_remove, text=inline_buttons.subscription.remove)
