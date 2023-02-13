@@ -140,9 +140,17 @@ async def subscription_menu(message: Message):
     )
 
 
+async def new_day_command(message: Message):
+    database.reset_user_result(message.from_user.id)
+    await message.delete()
+    await message.answer('Результаты сброшены. Удачного дня!')
+
+
 def setup(dp: Dispatcher):
+    # Commands
     dp.register_message_handler(start_command, commands=['start', 'help'])
     dp.register_message_handler(stat_command, commands=['stat'])
+    dp.register_message_handler(new_day_command, commands=['new_day'])
 
     # Inline handlers
     dp.register_message_handler(success_menu, Text(equals=main_kb_buttons.success))

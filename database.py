@@ -136,3 +136,24 @@ def change_result_field(user_id: int, field_name: str, is_increment: bool, file_
         '''
 
     execute_query(query)
+
+
+def reset_user_result(user_id: int, file_name=DB_FILE_NAME):
+    query = f'''
+        UPDATE result
+        SET
+            success = 0,
+            postponed = 0,
+            canceled = 0,
+            invite_friend = 0,
+            transfer_abroad = 0,
+            mobile_bank = 0,
+            debit_card = 0,
+            credit_card = 0,
+            credit_card = 0,
+            investments = 0,
+            junior = 0,
+            subscription = 0
+        WHERE user_id == {user_id};       
+    '''
+    execute_query(query)
