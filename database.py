@@ -87,10 +87,7 @@ def create_empty_result(bot_user: BotUser, file_name=DB_FILE_NAME):
     execute_query(query)
 
 
-def get_user_daily_result(
-        user: BotUser,
-        file_name=DB_FILE_NAME
-) -> DailyResult:
+def get_user_daily_result(user: BotUser, file_name=DB_FILE_NAME) -> DailyResult:
     query = f'''
         SELECT 
             success, postponed, canceled, 
@@ -116,3 +113,26 @@ def get_user_daily_result(
         subscription=query_result[11]
     )
     return daily_result
+
+
+def change_result_field(user_id: int, field_name: str, is_increment: bool, file_name=DB_FILE_NAME):
+    if is_increment:
+        query = f'''
+        UPDATE result 
+        SET {field_name} = {field_name} + 1
+        WHERE user_id == {user_id};
+        '''
+    else:
+        # Checking if value is not positive
+        get_value_query = f'SELECT {field_name} FROM result WHERE user_id == {user_id};'
+        field_value = execute_read_query(get_value_query)[0][0]
+        if field_value <= 0:
+            return
+
+        query = f'''
+        UPDATE result 
+        SET {field_name} = {field_name} - 1
+        WHERE user_id == {user_id};
+        '''
+
+    execute_query(query)

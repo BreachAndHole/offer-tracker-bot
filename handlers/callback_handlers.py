@@ -1,5 +1,7 @@
 from aiogram import Dispatcher, Bot
 from aiogram.types import Message
+
+import database
 from bot import bot
 from keyboards.buttons_config import inline_buttons
 
@@ -10,121 +12,145 @@ async def cancel_changes(message: Message):
 
 
 async def success_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='success', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def success_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='success', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def postponed_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='postponed', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def postponed_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='postponed', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def canceled_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='canceled', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def canceled_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='canceled', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def invite_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='invite_friend', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def invite_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='invite_friend', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def transfer_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='transfer_abroad', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def transfer_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='transfer_abroad', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def mobile_bank_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='mobile_bank', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def mobile_bank_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='mobile_bank', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def debit_card_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='debit_card', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def debit_card_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='debit_card', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def credit_card_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='credit_card', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def credit_card_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='credit_card', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def sim_card_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='sim_card', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def sim_card_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='sim_card', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def investments_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='investments', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def investments_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='investments', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def junior_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='junior', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def junior_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='junior', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
 
 async def subscription_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='subscription', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success +1')
 
 
 async def subscription_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='subscription', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'success -1')
 
