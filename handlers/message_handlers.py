@@ -25,7 +25,6 @@ async def start_command(message: Message):
         )
 
     # Delete message and open main keyboard
-    await message.delete()
     await message.answer(
         text=messages.START_MESSAGE,
         reply_markup=replyKeyboards.main_keyboard
@@ -40,7 +39,6 @@ async def stat_command(message: Message):
     )
     daily_result = database.get_user_daily_result(user)
     reply_text = messages.form_stat_message(daily_result)
-    await message.delete()
     await message.answer(reply_text)
 
 
