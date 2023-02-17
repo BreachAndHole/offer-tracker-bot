@@ -16,7 +16,7 @@ class DailyResult:
     # Meeting results
     success: int
     postponed: int
-    canceled: int
+    refused: int
 
     # Offers
     invite_friend: int
@@ -92,7 +92,7 @@ def get_user_daily_result(user: BotUser, file_name=DB_FILE_NAME) -> DailyResult:
         add_user_to_database(user)
     query = f'''
         SELECT 
-            success, postponed, canceled, 
+            success, postponed, refused, 
             invite_friend, transfer_abroad, mobile_bank,
             debit_card, credit_card, sim_card,
             investments, junior, subscription
@@ -103,7 +103,7 @@ def get_user_daily_result(user: BotUser, file_name=DB_FILE_NAME) -> DailyResult:
     daily_result = DailyResult(
         success=query_result[0],
         postponed=query_result[1],
-        canceled=query_result[2],
+        refused=query_result[2],
         invite_friend=query_result[3],
         transfer_abroad=query_result[4],
         mobile_bank=query_result[5],
@@ -146,7 +146,7 @@ def reset_user_result(user_id: int, file_name=DB_FILE_NAME):
         SET
             success = 0,
             postponed = 0,
-            canceled = 0,
+            refused = 0,
             invite_friend = 0,
             transfer_abroad = 0,
             mobile_bank = 0,

@@ -34,16 +34,16 @@ async def postponed_remove(message: Message):
     await bot.send_message(message.from_user.id, 'Одна перенесенная встреча удалена')
 
 
-async def canceled_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='canceled', is_increment=True)
+async def refused_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='refused', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
-    await bot.send_message(message.from_user.id, 'Новая отмененная встреча добавлена')
+    await bot.send_message(message.from_user.id, 'Новый отказ добавлен')
 
 
-async def canceled_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='canceled', is_increment=False)
+async def refused_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='refused', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
-    await bot.send_message(message.from_user.id, 'Одна отмененная встреча удалена')
+    await bot.send_message(message.from_user.id, 'Одна отказ удален')
 
 
 async def invite_add(message: Message):
@@ -160,8 +160,8 @@ def setup(dp: Dispatcher):
     dp.register_callback_query_handler(success_remove, text=inline_buttons.success.remove)
     dp.register_callback_query_handler(postponed_add, text=inline_buttons.postponed.add)
     dp.register_callback_query_handler(postponed_remove, text=inline_buttons.postponed.remove)
-    dp.register_callback_query_handler(canceled_add, text=inline_buttons.canceled.add)
-    dp.register_callback_query_handler(canceled_remove, text=inline_buttons.canceled.remove)
+    dp.register_callback_query_handler(refused_add, text=inline_buttons.refused.add)
+    dp.register_callback_query_handler(refused_remove, text=inline_buttons.refused.remove)
     dp.register_callback_query_handler(invite_add, text=inline_buttons.invite_friend.add)
     dp.register_callback_query_handler(invite_remove, text=inline_buttons.invite_friend.remove)
     dp.register_callback_query_handler(transfer_add, text=inline_buttons.transfer_abroad.add)

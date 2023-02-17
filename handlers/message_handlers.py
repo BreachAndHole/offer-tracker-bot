@@ -58,11 +58,11 @@ async def postponed_menu(message: Message):
     )
 
 
-async def canceled_menu(message: Message):
+async def refused_menu(message: Message):
     await message.delete()
     await message.answer(
         'Что вы хотите сделать?',
-        reply_markup=inlineKeyboards.canceled_kb
+        reply_markup=inlineKeyboards.refused_kb
     )
 
 
@@ -153,7 +153,7 @@ def setup(dp: Dispatcher):
     # Inline handlers
     dp.register_message_handler(success_menu, Text(equals=main_kb_buttons.success))
     dp.register_message_handler(postponed_menu, Text(equals=main_kb_buttons.postponed))
-    dp.register_message_handler(canceled_menu, Text(equals=main_kb_buttons.canceled))
+    dp.register_message_handler(refused_menu, Text(equals=main_kb_buttons.refused))
     dp.register_message_handler(invite_friend_menu, Text(equals=main_kb_buttons.invite_friend))
     dp.register_message_handler(transfer_abroad_menu, Text(equals=main_kb_buttons.transfer_abroad))
     dp.register_message_handler(mobile_bank_menu, Text(equals=main_kb_buttons.mobile_bank))

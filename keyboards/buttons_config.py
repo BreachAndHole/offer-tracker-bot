@@ -4,7 +4,7 @@ from typing import NamedTuple
 class KeyboardButtons(NamedTuple):
     success: str
     postponed: str
-    canceled: str
+    refused: str
     invite_friend: str
     transfer_abroad: str
     mobile_bank: str
@@ -24,7 +24,7 @@ class CallbackText(NamedTuple):
 class InlineButtons(NamedTuple):
     success: CallbackText
     postponed: CallbackText
-    canceled: CallbackText
+    refused: CallbackText
     invite_friend: CallbackText
     transfer_abroad: CallbackText
     mobile_bank: CallbackText
@@ -40,7 +40,7 @@ class InlineButtons(NamedTuple):
 main_kb_buttons = KeyboardButtons(
     success='Успешные',
     postponed='Переносы',
-    canceled='Отказы',
+    refused='Отказы',
     invite_friend='Приведи друга',
     transfer_abroad='Перевод за рубеж',
     mobile_bank='Мобильный банк',
@@ -54,7 +54,7 @@ main_kb_buttons = KeyboardButtons(
 
 success_callback = CallbackText('success_add_btn', 'success_remove_btn')
 postponed_callback = CallbackText('postponed_add_btn', 'postponed_remove_btn')
-canceled_callback = CallbackText('canceled_add_btn', 'canceled_remove_btn')
+refused_callback = CallbackText('refused_add_btn', 'refused_remove_btn')
 invite_callback = CallbackText('invite_add_btn', 'invite_remove_btn')
 transfer_callback = CallbackText('transfer_add_btn', 'transfer_remove_btn')
 mobile_bank_callback = CallbackText('mobile_add_btn', 'mobile_remove_btn')
@@ -68,7 +68,7 @@ subscription_callback = CallbackText('subscription_add_btn', 'subscription_remov
 inline_buttons = InlineButtons(
     success=success_callback,
     postponed=postponed_callback,
-    canceled=canceled_callback,
+    refused=refused_callback,
     invite_friend=invite_callback,
     transfer_abroad=transfer_callback,
     mobile_bank=mobile_bank_callback,

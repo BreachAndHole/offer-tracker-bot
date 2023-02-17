@@ -19,8 +19,8 @@ def form_stat_message(results: DailyResult) -> str:
         stat_message += f'Успешно: {results.success}\n'
     if results.postponed:
         stat_message += f'Перенос: {results.postponed}\n'
-    if results.canceled:
-        stat_message += f'Отмена: {results.canceled}\n'
+    if results.refused:
+        stat_message += f'Отмена: {results.refused}\n'
     stat_message += '\n'
     if results.invite_friend:
         stat_message += f'{results.invite_friend} пд\n'

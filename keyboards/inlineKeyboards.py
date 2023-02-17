@@ -18,12 +18,12 @@ postponed_kb = InlineKeyboardMarkup(row_width=2)
 postponed_kb.row(postponed_add_btn, postponed_remove_btn)
 postponed_kb.row(cancel_btn)
 
-# Canceled
-canceled_add_btn = InlineKeyboardButton(text='+1', callback_data=inline_buttons.canceled.add)
-canceled_remove_btn = InlineKeyboardButton(text='-1', callback_data=inline_buttons.canceled.remove)
-canceled_kb = InlineKeyboardMarkup(row_width=2)
-canceled_kb.row(canceled_add_btn, canceled_remove_btn)
-canceled_kb.row(cancel_btn)
+# Refused
+refused_add_btn = InlineKeyboardButton(text='+1', callback_data=inline_buttons.refused.add)
+refused_remove_btn = InlineKeyboardButton(text='-1', callback_data=inline_buttons.refused.remove)
+refused_kb = InlineKeyboardMarkup(row_width=2)
+refused_kb.row(refused_add_btn, refused_remove_btn)
+refused_kb.row(cancel_btn)
 
 # Invite friend
 invite_add_btn = InlineKeyboardButton(text='+1', callback_data=inline_buttons.invite_friend.add)
