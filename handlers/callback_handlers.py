@@ -1,4 +1,4 @@
-from aiogram import Dispatcher, Bot
+from aiogram import Dispatcher
 from aiogram.types import Message
 
 import database
@@ -154,6 +154,18 @@ async def subscription_remove(message: Message):
     await bot.send_message(message.from_user.id, 'Оффер "Подписка Pro" удалён')
 
 
+async def card_protection_add(message: Message):
+    database.change_result_field(message.from_user.id, field_name='card_protection', is_increment=True)
+    await bot.delete_message(message.from_user.id, message.message.message_id)
+    await bot.send_message(message.from_user.id, 'Оффер "Защита карты" добавлен')
+
+
+async def card_protection_remove(message: Message):
+    database.change_result_field(message.from_user.id, field_name='card_protection', is_increment=False)
+    await bot.delete_message(message.from_user.id, message.message.message_id)
+    await bot.send_message(message.from_user.id, 'Оффер "Защита карты" удалён')
+
+
 def setup(dp: Dispatcher):
     dp.register_callback_query_handler(cancel_changes, text=inline_buttons.cancel)
     dp.register_callback_query_handler(success_add, text=inline_buttons.success.add)
@@ -180,3 +192,5 @@ def setup(dp: Dispatcher):
     dp.register_callback_query_handler(junior_remove, text=inline_buttons.junior.remove)
     dp.register_callback_query_handler(subscription_add, text=inline_buttons.subscription.add)
     dp.register_callback_query_handler(subscription_remove, text=inline_buttons.subscription.remove)
+    dp.register_callback_query_handler(card_protection_add, text=inline_buttons.card_protection.add)
+    dp.register_callback_query_handler(card_protection_remove, text=inline_buttons.card_protection.remove)

@@ -87,3 +87,10 @@ subscription_remove_btn = InlineKeyboardButton(text='-1', callback_data=inline_b
 subscription_kb = InlineKeyboardMarkup(row_width=2)
 subscription_kb.row(subscription_add_btn, subscription_remove_btn)
 subscription_kb.row(cancel_btn)
+
+# Card protection
+card_protection_add_btn = InlineKeyboardButton(text='+1', callback_data=inline_buttons.card_protection.add)
+card_protection_remove_btn = InlineKeyboardButton(text='-1', callback_data=inline_buttons.card_protection.remove)
+card_protection_kb = InlineKeyboardMarkup(row_width=2)
+card_protection_kb.row(card_protection_add_btn, card_protection_remove_btn)
+card_protection_kb.row(cancel_btn)

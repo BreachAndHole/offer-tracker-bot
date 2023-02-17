@@ -40,6 +40,8 @@ def form_stat_message(results: DailyResult) -> str:
         stat_message += f'{results.junior} джуниор\n'
     if results.subscription:
         stat_message += f'{results.subscription} подписка\n'
+    if results.card_protection:
+        stat_message += f'{results.card_protection} защита карты\n'
 
     if not stat_message.strip():
         stat_message = 'В текущем дне не добавлено никаких результатов'

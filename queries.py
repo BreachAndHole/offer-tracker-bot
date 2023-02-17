@@ -23,6 +23,7 @@ CREATE_RESULT_TABLE = '''
         investments INTEGER UNSIGNED DEFAULT 0 NOT NULL,
         junior INTEGER UNSIGNED DEFAULT 0 NOT NULL,
         subscription INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+        card_protection INTEGER UNSIGNED DEFAULT 0 NOT NULL,
         FOREIGN KEY (user_id) REFERENCES bot_user (id) 
     );
 '''

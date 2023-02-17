@@ -14,6 +14,7 @@ class KeyboardButtons(NamedTuple):
     investments: str
     junior: str
     subscription: str
+    card_protection: str
 
 
 class CallbackText(NamedTuple):
@@ -34,6 +35,7 @@ class InlineButtons(NamedTuple):
     investments: CallbackText
     junior: CallbackText
     subscription: CallbackText
+    card_protection: CallbackText
     cancel: str
 
 
@@ -50,6 +52,7 @@ main_kb_buttons = KeyboardButtons(
     investments='Инвестиции',
     junior='Джуниор',
     subscription='Подписка PRO',
+    card_protection='Защита карты',
 )
 
 success_callback = CallbackText('success_add_btn', 'success_remove_btn')
@@ -64,6 +67,7 @@ sim_card_callback = CallbackText('sim_add_btn', 'sim_remove_btn')
 investments_callback = CallbackText('investments_add_btn', 'investments_remove_btn')
 junior_callback = CallbackText('junior_add_btn', 'junior_remove_btn')
 subscription_callback = CallbackText('subscription_add_btn', 'subscription_remove_btn')
+card_protection_callback = CallbackText('card_protection_add_btn', 'card_protection_remove_btn')
 
 inline_buttons = InlineButtons(
     success=success_callback,
@@ -78,5 +82,6 @@ inline_buttons = InlineButtons(
     investments=investments_callback,
     junior=junior_callback,
     subscription=subscription_callback,
+    card_protection=card_protection_callback,
     cancel='cancel_btn'
 )

@@ -138,6 +138,14 @@ async def subscription_menu(message: Message):
     )
 
 
+async def card_protection_menu(message: Message):
+    await message.delete()
+    await message.answer(
+        'Что вы хотите сделать?',
+        reply_markup=inlineKeyboards.card_protection_kb
+    )
+
+
 async def new_day_command(message: Message):
     database.reset_user_result(message.from_user.id)
     await message.delete()
@@ -163,3 +171,4 @@ def setup(dp: Dispatcher):
     dp.register_message_handler(investments_menu, Text(equals=main_kb_buttons.investments))
     dp.register_message_handler(junior_menu, Text(equals=main_kb_buttons.junior))
     dp.register_message_handler(subscription_menu, Text(equals=main_kb_buttons.subscription))
+    dp.register_message_handler(card_protection_menu, Text(equals=main_kb_buttons.card_protection))

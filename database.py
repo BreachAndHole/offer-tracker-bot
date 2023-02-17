@@ -28,6 +28,7 @@ class DailyResult:
     investments: int
     junior: int
     subscription: int
+    card_protection: int
 
 
 def execute_query(query: str, file_name=DB_FILE_NAME) -> None:
@@ -95,7 +96,8 @@ def get_user_daily_result(user: BotUser, file_name=DB_FILE_NAME) -> DailyResult:
             success, postponed, refused, 
             invite_friend, transfer_abroad, mobile_bank,
             debit_card, credit_card, sim_card,
-            investments, junior, subscription
+            investments, junior, subscription,
+            card_protection
         FROM result
         WHERE user_id == {user.telegram_id}  
     '''
@@ -112,7 +114,8 @@ def get_user_daily_result(user: BotUser, file_name=DB_FILE_NAME) -> DailyResult:
         sim_card=query_result[8],
         investments=query_result[9],
         junior=query_result[10],
-        subscription=query_result[11]
+        subscription=query_result[11],
+        card_protection=query_result[12],
     )
     return daily_result
 
@@ -155,7 +158,8 @@ def reset_user_result(user_id: int, file_name=DB_FILE_NAME):
             sim_card = 0,
             investments = 0,
             junior = 0,
-            subscription = 0
+            subscription = 0,
+            card_protection = 0
         WHERE user_id == {user_id};       
     '''
     execute_query(query)
