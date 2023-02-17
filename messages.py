@@ -39,4 +39,7 @@ def form_stat_message(results: DailyResult) -> str:
     if results.subscription:
         stat_message += f'{results.subscription} подписка\n'
 
+    if not stat_message.strip():
+        stat_message = 'В текущем дне не добавлено никаких результатов'
+
     return stat_message
