@@ -2,7 +2,7 @@ from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from keyboards.buttons_config import main_kb_buttons
 
 
-# Main keyboard buttons
+# Results keyboard buttons
 # Meeting results
 success_btn = KeyboardButton(text=main_kb_buttons.success)
 postponed_btn = KeyboardButton(text=main_kb_buttons.postponed)

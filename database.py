@@ -88,6 +88,8 @@ def create_empty_result(bot_user: BotUser, file_name=DB_FILE_NAME):
 
 
 def get_user_daily_result(user: BotUser, file_name=DB_FILE_NAME) -> DailyResult:
+    if not user_is_in_database(user):
+        add_user_to_database(user)
     query = f'''
         SELECT 
             success, postponed, canceled, 

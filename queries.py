@@ -6,7 +6,7 @@ CREATE_USER_TABLE = '''
     );
 '''
 
-# TODO: add cart protection field
+# TODO: add card protection field
 CREATE_RESULT_TABLE = '''
     CREATE TABLE IF NOT EXISTS result (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

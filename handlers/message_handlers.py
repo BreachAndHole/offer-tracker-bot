@@ -146,9 +146,9 @@ async def new_day_command(message: Message):
 
 def setup(dp: Dispatcher):
     # Commands
-    dp.register_message_handler(start_command, commands=['start', 'help'])
-    dp.register_message_handler(stat_command, commands=['stat'])
-    dp.register_message_handler(new_day_command, commands=['new_day'])
+    dp.register_message_handler(start_command, commands=['start', 'help', 'старт'])
+    dp.register_message_handler(stat_command, commands=['result', 'результат'])
+    dp.register_message_handler(new_day_command, commands=['reset', 'сбросить'])
 
     # Inline handlers
     dp.register_message_handler(success_menu, Text(equals=main_kb_buttons.success))
