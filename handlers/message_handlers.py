@@ -38,7 +38,7 @@ async def stat_command(message: Message):
         last_name=message.from_user.last_name
     )
     daily_result = services.get_user_daily_result(user)
-    reply_text = messages.form_stat_message(daily_result)
+    reply_text = messages.form_result_message(daily_result)
     await message.answer(reply_text)
 
 
@@ -152,11 +152,23 @@ async def new_day_command(message: Message):
     await message.answer('Результаты сброшены. Удачного дня!')
 
 
+async def feedback_command(message: Message):
+    is_text_exists = message.text.replace("/feedback", "") != ''
+    if not is_text_exists:
+        await message.answer(messages.FEEDBACK_NOT_SENT)
+        return
+
+    feedback = messages.form_feedback_message(message)
+    await message.answer(messages.FEEDBACK_SENT)
+    await bot.send_message(chat_id=ADMIN_ID, text=feedback)
+
+
 def setup(dp: Dispatcher):
     # Commands
     dp.register_message_handler(start_command, commands=['start', 'help', 'старт'])
     dp.register_message_handler(stat_command, commands=['result', 'результат'])
     dp.register_message_handler(new_day_command, commands=['reset', 'сбросить'])
+    dp.register_message_handler(feedback_command, commands=['feedback'])
 
     # Inline handlers
     dp.register_message_handler(success_menu, Text(equals=main_kb_buttons.success))

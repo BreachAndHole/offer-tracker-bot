@@ -1,3 +1,4 @@
+from aiogram.types import Message
 from services import DailyResult
 
 
@@ -10,10 +11,14 @@ START_MESSAGE = '''
 /start или /старт - вызвать справку и основные команды
 /result или /результат - получить сообщение со результатами за день
 /reset или /сбросить - обнулить статистику встреч и продаж (начать новый день)
+/feedback [текст сообщения] - обратная связь с разработчиком (квадратные скобки писать не обязательно)
 '''
 
+FEEDBACK_NOT_SENT = 'Сообщение не отправлено! Введите текст сообщения через пробел после команды /feedback'
+FEEDBACK_SENT = 'Сообщение отправлено! Спасибо за обратную связь.'
 
-def form_stat_message(results: DailyResult) -> str:
+
+def form_result_message(results: DailyResult) -> str:
     stat_message = ''
     if results.success:
         stat_message += f'Успешно: {results.success}\n'
@@ -47,3 +52,11 @@ def form_stat_message(results: DailyResult) -> str:
         stat_message = 'В текущем дне не добавлено никаких результатов'
 
     return stat_message
+
+
+def form_feedback_message(message: Message) -> str:
+    feedback = f'Пришел новый #feedback\n' \
+               f'Пользователь: {message.from_user.first_name} {message.from_user.last_name}\n' \
+               f'ID: {message.from_user.id}\n\n' \
+               f'Текст: {message.text.replace("/feedback", "")}'
+    return feedback
