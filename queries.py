@@ -6,7 +6,6 @@ CREATE_USER_TABLE = '''
     );
 '''
 
-# TODO: add card protection field
 CREATE_RESULT_TABLE = '''
     CREATE TABLE IF NOT EXISTS result (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -1,4 +1,4 @@
-from database import DailyResult
+from services import DailyResult
 
 
 START_MESSAGE = '''

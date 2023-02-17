@@ -1,8 +1,8 @@
-from aiogram import Dispatcher, Bot
+from aiogram import Dispatcher
 from aiogram.types import Message
 from aiogram.dispatcher.filters import Text
 
-import database
+import services
 import messages
 from config import ADMIN_ID
 from keyboards.buttons_config import main_kb_buttons
@@ -11,14 +11,14 @@ from bot import bot
 
 
 async def start_command(message: Message):
-    user = database.BotUser(
+    user = services.BotUser(
         telegram_id=message.from_user.id,
         first_name=message.from_user.first_name,
         last_name=message.from_user.last_name
     )
 
     # Adding user to database if he is new and messaging about it to admin
-    if database.add_user_to_database(user):
+    if services.add_user_to_database(user):
         await bot.send_message(
             chat_id=ADMIN_ID,
             text=f'New user added: {user.first_name} {user.last_name}'
@@ -32,12 +32,12 @@ async def start_command(message: Message):
 
 
 async def stat_command(message: Message):
-    user = database.BotUser(
+    user = services.BotUser(
         telegram_id=message.from_user.id,
         first_name=message.from_user.first_name,
         last_name=message.from_user.last_name
     )
-    daily_result = database.get_user_daily_result(user)
+    daily_result = services.get_user_daily_result(user)
     reply_text = messages.form_stat_message(daily_result)
     await message.answer(reply_text)
 
@@ -147,7 +147,7 @@ async def card_protection_menu(message: Message):
 
 
 async def new_day_command(message: Message):
-    database.reset_user_result(message.from_user.id)
+    services.reset_user_result(message.from_user.id)
     await message.delete()
     await message.answer('Результаты сброшены. Удачного дня!')
 

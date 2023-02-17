@@ -1,7 +1,7 @@
 from aiogram import Dispatcher
 from aiogram.types import Message
 
-import database
+import services
 from bot import bot
 from keyboards.buttons_config import inline_buttons
 
@@ -11,157 +11,157 @@ async def cancel_changes(message: Message):
 
 
 async def success_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='success', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='success', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Новая успешная встреча добавлена')
 
 
 async def success_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='success', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='success', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Одна успешная встреча удалена')
 
 
 async def postponed_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='postponed', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='postponed', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Новая перенесенная встреча добавлена')
 
 
 async def postponed_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='postponed', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='postponed', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Одна перенесенная встреча удалена')
 
 
 async def refused_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='refused', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='refused', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Новый отказ добавлен')
 
 
 async def refused_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='refused', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='refused', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Одна отказ удален')
 
 
 async def invite_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='invite_friend', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='invite_friend', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Приведи друга" добавлен')
 
 
 async def invite_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='invite_friend', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='invite_friend', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Приведи друга" удалён')
 
 
 async def transfer_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='transfer_abroad', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='transfer_abroad', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Перевод за рубеж" добавлен')
 
 
 async def transfer_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='transfer_abroad', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='transfer_abroad', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Перевод за рубеж" удалён')
 
 
 async def mobile_bank_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='mobile_bank', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='mobile_bank', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Мобильный банк" добавлен')
 
 
 async def mobile_bank_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='mobile_bank', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='mobile_bank', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Мобильный банк" удалён')
 
 
 async def debit_card_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='debit_card', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='debit_card', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Дебетовая карта" добавлен')
 
 
 async def debit_card_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='debit_card', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='debit_card', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Дебетовая карта" удалён')
 
 
 async def credit_card_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='credit_card', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='credit_card', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Кредитная карта" добавлен')
 
 
 async def credit_card_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='credit_card', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='credit_card', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Кредитная карта" Удалён')
 
 
 async def sim_card_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='sim_card', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='sim_card', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Тинькофф Мобайл" добавлен')
 
 
 async def sim_card_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='sim_card', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='sim_card', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Тинькофф Мобайл" удалён')
 
 
 async def investments_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='investments', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='investments', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Тинькофф инвестиции" добавлен')
 
 
 async def investments_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='investments', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='investments', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Тинькофф инвестиции" удалён')
 
 
 async def junior_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='junior', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='junior', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Тинькофф джуниор" добавлен')
 
 
 async def junior_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='junior', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='junior', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Тинькофф джуниор" удалён')
 
 
 async def subscription_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='subscription', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='subscription', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Подписка Pro" добавлен')
 
 
 async def subscription_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='subscription', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='subscription', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Подписка Pro" удалён')
 
 
 async def card_protection_add(message: Message):
-    database.change_result_field(message.from_user.id, field_name='card_protection', is_increment=True)
+    services.change_result_field(message.from_user.id, field_name='card_protection', is_increment=True)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Защита карты" добавлен')
 
 
 async def card_protection_remove(message: Message):
-    database.change_result_field(message.from_user.id, field_name='card_protection', is_increment=False)
+    services.change_result_field(message.from_user.id, field_name='card_protection', is_increment=False)
     await bot.delete_message(message.from_user.id, message.message.message_id)
     await bot.send_message(message.from_user.id, 'Оффер "Защита карты" удалён')
 
