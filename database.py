@@ -1,5 +1,5 @@
 import sqlite3
-import queries
+from config import queries
 from config.basic import DB_FILE_NAME
 
 
@@ -19,5 +19,4 @@ def execute_read_query(query: str) -> list[tuple]:
 
 
 def create_database() -> None:
-    execute_query(queries.CREATE_USER_TABLE)
     execute_query(queries.CREATE_RESULT_TABLE)

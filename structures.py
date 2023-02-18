@@ -2,13 +2,6 @@ from dataclasses import dataclass
 
 
 @dataclass
-class BotUser:
-    telegram_id: int
-    first_name: str
-    last_name: str
-
-
-@dataclass
 class DailyResult:
     # Meeting results
     success: int

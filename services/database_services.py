@@ -1,6 +1,6 @@
-import queries
+from config import queries
 from database import execute_query, execute_read_query
-from structures import BotUser, DailyResult
+from structures import DailyResult
 
 
 def get_all_user_ids() -> list[int]:
@@ -9,40 +9,27 @@ def get_all_user_ids() -> list[int]:
     return ids
 
 
-def user_is_in_database(bot_user: BotUser) -> bool:
+def user_is_in_database(user_id: int) -> bool:
     user_ids = get_all_user_ids()
-    return bot_user.telegram_id in user_ids
+    return user_id in user_ids
 
 
-def add_user_to_database(bot_user: BotUser) -> bool:
+def add_user_to_database(user_id: int) -> bool:
     """ Adding user to database. Return True if it's a new user """
-    if user_is_in_database(bot_user):
+    if user_is_in_database(user_id):
         return False
 
     query = f'''
-        INSERT INTO bot_user (id, first_name, last_name)
-        VALUES (
-            {bot_user.telegram_id}, 
-            "{bot_user.first_name}", 
-            "{bot_user.last_name}"
-        );
+        INSERT INTO result (user_id)
+        VALUES ({user_id});
     '''
     execute_query(query)
-    create_empty_result(bot_user)
     return True
 
 
-def create_empty_result(bot_user: BotUser):
-    query = f'''
-        INSERT INTO result (user_id)
-        VALUES ({bot_user.telegram_id});
-    '''
-    execute_query(query)
-
-
-def get_user_daily_result(user: BotUser) -> DailyResult:
-    if not user_is_in_database(user):
-        add_user_to_database(user)
+def get_user_result(user_id: int) -> DailyResult:
+    if not user_is_in_database(user_id):
+        add_user_to_database(user_id)
     query = f'''
         SELECT 
             success, postponed, refused, 
@@ -51,7 +38,7 @@ def get_user_daily_result(user: BotUser) -> DailyResult:
             investments, junior, subscription,
             card_protection
         FROM result
-        WHERE user_id == {user.telegram_id}  
+        WHERE user_id == {user_id}  
     '''
     query_result = execute_read_query(query)[0]
     daily_result = DailyResult(
@@ -75,23 +62,22 @@ def get_user_daily_result(user: BotUser) -> DailyResult:
 def change_result_field(user_id: int, field_name: str, is_increment: bool):
     if is_increment:
         query = f'''
-        UPDATE result 
-        SET {field_name} = {field_name} + 1
-        WHERE user_id == {user_id};
+            UPDATE result 
+            SET {field_name} = {field_name} + 1
+            WHERE user_id == {user_id};
         '''
     else:
         # Checking if value is not positive
-        get_value_query = f'SELECT {field_name} FROM result WHERE user_id == {user_id};'
-        field_value = execute_read_query(get_value_query)[0][0]
+        get_field_value_query = f'SELECT {field_name} FROM result WHERE user_id == {user_id};'
+        field_value = execute_read_query(get_field_value_query)[0][0]
         if field_value <= 0:
             return
 
         query = f'''
-        UPDATE result 
-        SET {field_name} = {field_name} - 1
-        WHERE user_id == {user_id};
+            UPDATE result 
+            SET {field_name} = {field_name} - 1
+            WHERE user_id == {user_id};
         '''
-
     execute_query(query)
 
 

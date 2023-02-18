@@ -1,15 +1,6 @@
-CREATE_USER_TABLE = '''
-    CREATE TABLE IF NOT EXISTS bot_user (
-        id INTEGER PRIMARY KEY,
-        first_name VARCHAR(30),
-        last_name VARCHAR(30)
-    );
-'''
-
 CREATE_RESULT_TABLE = '''
     CREATE TABLE IF NOT EXISTS result (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER,
+        user_id INTEGER PRIMARY KEY,
         success INTEGER UNSIGNED DEFAULT 0 NOT NULL,
         postponed INTEGER UNSIGNED DEFAULT 0 NOT NULL,
         refused INTEGER UNSIGNED DEFAULT 0 NOT NULL,
@@ -22,12 +13,11 @@ CREATE_RESULT_TABLE = '''
         investments INTEGER UNSIGNED DEFAULT 0 NOT NULL,
         junior INTEGER UNSIGNED DEFAULT 0 NOT NULL,
         subscription INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-        card_protection INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES bot_user (id) 
+        card_protection INTEGER UNSIGNED DEFAULT 0 NOT NULL 
     );
 '''
 
 GET_ALL_USER_IDS = '''
-    SELECT id
-    FROM bot_user;
+    SELECT user_id
+    FROM result;
 '''

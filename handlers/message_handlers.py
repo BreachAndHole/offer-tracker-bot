@@ -6,22 +6,15 @@ from config.basic import ADMIN_ID
 from config import messages, buttons
 from keyboards import reply, inline
 from services import message_services, database_services
-from structures import BotUser
 from bot import bot
 
 
 async def start_command(message: Message):
-    user = BotUser(
-        telegram_id=message.from_user.id,
-        first_name=message.from_user.first_name,
-        last_name=message.from_user.last_name
-    )
-
     # Adding user to database if he is new and messaging about it to admin
-    if database_services.add_user_to_database(user):
+    if database_services.add_user_to_database(message.from_user.id):
         await bot.send_message(
             chat_id=ADMIN_ID,
-            text=f'New user added: {user.first_name} {user.last_name}'
+            text=f'New user added: {message.from_user.first_name} {message.from_user.last_name}'
         )
 
     await message.answer(
@@ -31,12 +24,7 @@ async def start_command(message: Message):
 
 
 async def stat_command(message: Message):
-    user = BotUser(
-        telegram_id=message.from_user.id,
-        first_name=message.from_user.first_name,
-        last_name=message.from_user.last_name
-    )
-    daily_result = database_services.get_user_daily_result(user)
+    daily_result = database_services.get_user_result(message.from_user.id)
     reply_text = message_services.form_result_message(daily_result)
     await message.answer(reply_text)
 
