@@ -1,33 +1,6 @@
-from dataclasses import dataclass
 import queries
 from database import execute_query, execute_read_query
-
-
-@dataclass
-class BotUser:
-    telegram_id: int
-    first_name: str
-    last_name: str
-
-
-@dataclass
-class DailyResult:
-    # Meeting results
-    success: int
-    postponed: int
-    refused: int
-
-    # Offers
-    invite_friend: int
-    transfer_abroad: int
-    mobile_bank: int
-    debit_card: int
-    credit_card: int
-    sim_card: int
-    investments: int
-    junior: int
-    subscription: int
-    card_protection: int
+from structures import BotUser, DailyResult
 
 
 def get_all_user_ids() -> list[int]:

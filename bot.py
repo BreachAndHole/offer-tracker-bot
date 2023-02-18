@@ -1,5 +1,4 @@
 from aiogram import Bot
-import config
+from config.basic import API_TOKEN
 
-
-bot = Bot(token=config.API_TOKEN, parse_mode='HTML')
+bot = Bot(token=API_TOKEN, parse_mode='HTML')

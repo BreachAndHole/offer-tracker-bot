@@ -1,6 +1,6 @@
 import sqlite3
 import queries
-from config import DB_FILE_NAME
+from config.basic import DB_FILE_NAME
 
 
 def execute_query(query: str) -> None:
