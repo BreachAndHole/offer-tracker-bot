@@ -1,3 +1,8 @@
+CANCEL = 'cancel_btn'
+# Reset-related callbacks
+RESET_ACCEPTED = 'reset_accepted_btn'
+
+# Offer-related callbacks
 SUCCESS_ADD = 'success_add_btn'
 SUCCESS_REMOVE = 'success_remove_btn'
 POSTPONED_ADD = 'postponed_add_btn'
@@ -24,4 +29,3 @@ SUBSCRIPTION_ADD = 'subscription_add_btn'
 SUBSCRIPTION_REMOVE = 'subscription_remove_btn'
 CARD_PROTECTION_ADD = 'card_protection_add_btn'
 CARD_PROTECTION_REMOVE = 'card_protection_remove_btn'
-CANCEL = 'cancel_btn'

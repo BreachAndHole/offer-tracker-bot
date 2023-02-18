@@ -145,10 +145,12 @@ async def card_protection_menu(message: Message):
     )
 
 
-async def new_day_command(message: Message):
-    database_services.reset_user_result(message.from_user.id)
+async def reset_command(message: Message):
     await message.delete()
-    await message.answer('Результаты сброшены. Удачного дня!')
+    await message.answer(
+        'Вы действительно хотите сбросить текущие результаты встреч и офферов?',
+        reply_markup=inline.reset_kb
+    )
 
 
 async def feedback_command(message: Message):
@@ -166,7 +168,7 @@ def setup(dp: Dispatcher):
     # Commands
     dp.register_message_handler(start_command, commands=['start', 'help', 'старт'])
     dp.register_message_handler(stat_command, commands=['result', 'результат'])
-    dp.register_message_handler(new_day_command, commands=['reset', 'сбросить'])
+    dp.register_message_handler(reset_command, commands=['reset', 'сбросить'])
     dp.register_message_handler(feedback_command, commands=['feedback'])
 
     # Inline handlers

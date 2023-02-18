@@ -6,6 +6,12 @@ from bot import bot
 from config import callbacks
 
 
+async def reset_accepted(message: Message):
+    await bot.delete_message(message.from_user.id, message.message.message_id)
+    database_services.reset_user_result(message.from_user.id)
+    await bot.send_message(message.from_user.id, 'Данные сброшены. Хорошего рабочего дня!')
+
+
 async def cancel_changes(message: Message):
     await bot.delete_message(message.from_user.id, message.message.message_id)
 
@@ -167,6 +173,7 @@ async def card_protection_remove(message: Message):
 
 
 def setup(dp: Dispatcher):
+    dp.register_callback_query_handler(reset_accepted, text=callbacks.RESET_ACCEPTED)
     dp.register_callback_query_handler(cancel_changes, text=callbacks.CANCEL)
     dp.register_callback_query_handler(success_add, text=callbacks.SUCCESS_ADD)
     dp.register_callback_query_handler(success_remove, text=callbacks.SUCCESS_REMOVE)

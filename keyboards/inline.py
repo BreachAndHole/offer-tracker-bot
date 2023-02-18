@@ -4,6 +4,12 @@ from config import callbacks
 
 cancel_btn = InlineKeyboardButton(text='Отмена', callback_data=callbacks.CANCEL)
 
+# Reset keyboard
+reset_accepted_btn = InlineKeyboardButton(text='Сброс', callback_data=callbacks.RESET_ACCEPTED)
+reset_kb = InlineKeyboardMarkup(row_width=2)
+reset_kb.row(reset_accepted_btn, cancel_btn)
+
+# Offers-related keyboards
 # Success
 success_add_btn = InlineKeyboardButton(text='+1', callback_data=callbacks.SUCCESS_ADD)
 success_remove_btn = InlineKeyboardButton(text='-1', callback_data=callbacks.SUCCESS_REMOVE)
